@@ -6,25 +6,29 @@ class battlefield:
 
 
     # destroyed = [(),(),()]
-    def drawField (self,destroyed):
-       for i in range(0,self.size):
-           for j in range(0,self.size):
+    def drawField(self):
+     for i in range(0,(self.size*self.size)):
+        if i % self.size == 0:
+            print("\n")
+        print(self.field[i],end="")
+
+    def fillField (self,destroyed):
+       for i in range(0,(self.size*self.size)):
                self.field.append("|0|")
 
        for i in range(0,len(destroyed)):
-           for j in range (0,len(destroyed)):
-               self.field.pop([i][j])
-               self.field.insert([i][j],"|*|")
-
+               self.field.pop(destroyed[i])
+               self.field.insert(destroyed[i],"|*|")
 
 
 
 
 a = battlefield(6)
-b = [(0,0)]
-a.drawField(b)
+b = [0,2]
 
-print(a.field)
+a.fillField(b)
+
+a.drawField()
 # a = [(1,0),(3,5),(7,10)]
 #
 # print(len(a))
