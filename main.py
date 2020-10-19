@@ -34,10 +34,15 @@ class battlefield:
                self.field.insert(attackFieldPlaceConverter[i],"|*|")
 
 
+class player(battlefield):
+    pass
+
+class AI(battlefield):
+    pass
 
 
 a = battlefield(8)
-b = [(1,5)]
+b = [(1,5),(0,0),(0,2)]
 
 a.fillField(b)
 
