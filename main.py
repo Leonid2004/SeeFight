@@ -13,18 +13,31 @@ class battlefield:
         print(self.field[i],end="")
 
     def fillField (self,destroyed):
+       attackFieldPlaceConverter = []
+
+       for i in range(0,len(destroyed)):
+         #  for j in range(0,self.size):
+            strs = destroyed[i][0]
+            colmns = destroyed[i][1]
+            cntr = 0
+            for j in range(0,self.size):
+             cntr += strs
+            cntr += colmns
+            attackFieldPlaceConverter.append(cntr)
+            print(attackFieldPlaceConverter)
+
        for i in range(0,(self.size*self.size)):
                self.field.append("|0|")
 
-       for i in range(0,len(destroyed)):
-               self.field.pop(destroyed[i])
-               self.field.insert(destroyed[i],"|*|")
+       for i in range(0,len(attackFieldPlaceConverter)):
+               self.field.pop(attackFieldPlaceConverter[i])
+               self.field.insert(attackFieldPlaceConverter[i],"|*|")
 
 
 
 
-a = battlefield(6)
-b = [0,2]
+a = battlefield(8)
+b = [(1,5)]
 
 a.fillField(b)
 
