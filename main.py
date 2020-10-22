@@ -10,15 +10,20 @@ class player:
     attackArea = []
 
     def canIattack(self):
-        return theTurn
+        return self.theTurn
+    
     def attack(self,attackArea):
-        pass
+        if self.theTurn == True:
+          self.theTurn = False
+        else:
+             self.theTurn = True
+             
  
 class AI:
     pass
 
 
-class battlefield:
+class battlefield(player,AI):
     size = int()
     field = []
     def __init__(self, size):
@@ -57,10 +62,17 @@ class battlefield:
 
 a = battlefield(8)
 b = [(1,5),(0,0),(0,2)]
-
+attackThisCell = [0,0]
 a.fillField(b)
 
 a.drawField()
+
+user = player()
+print(user.canIattack())
+user.attack(attackThisCell)
+print(user.canIattack())
+user.attack(attackThisCell)
+print(user.canIattack())
 # a = [(1,0),(3,5),(7,10)]
 #
 # print(len(a))
