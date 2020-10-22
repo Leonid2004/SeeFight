@@ -1,3 +1,22 @@
+#Возможно я немного отошел от задания но я решил немного сделать по другому с
+#точки зрения ООП. Решил описать через 3 класса(Главное же что бы игра работала)
+#вот как тут
+#
+#
+
+
+class player:
+    theTurn = bool()
+    atackArea = []
+
+    def canIattack(self,myTurn):
+        myTurn = self.theTurn
+    
+
+class AI:
+    pass
+
+
 class battlefield:
     size = int()
     field = []
@@ -33,12 +52,6 @@ class battlefield:
                self.field.pop(attackFieldPlaceConverter[i])
                self.field.insert(attackFieldPlaceConverter[i],"|*|")
 
-
-class player(battlefield):
-    pass
-
-class AI(battlefield):
-    pass
 
 
 a = battlefield(8)
