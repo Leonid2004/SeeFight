@@ -1,18 +1,19 @@
 #Возможно я немного отошел от задания но я решил немного сделать по другому с
-#точки зрения ООП. Решил описать через 3 класса(Главное же что бы игра работала)
-#вот как тут
+#точки зрения ООП. Решил описать через 3 класса,было так немного удобнее(Главное же что бы игра работала)
+#вот как тут:
 #
 #
 
 
 class player:
-    theTurn = bool()
-    atackArea = []
+    theTurn = True
+    attackArea = []
 
-    def canIattack(self,myTurn):
-        myTurn = self.theTurn
-    
-
+    def canIattack(self):
+        return theTurn
+    def attack(self,attackArea):
+        pass
+ 
 class AI:
     pass
 
