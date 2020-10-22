@@ -12,11 +12,15 @@ class player:
     def canIattack(self):
         return self.theTurn
     
-    def attack(self,attackArea):
+    def attack(self,attackPlace):
         if self.theTurn == True:
+          self.attackArea.append(attackPlace)
           self.theTurn = False
-        else:
-             self.theTurn = True
+        return self.attackArea
+
+
+
+
              
  
 class AI:
@@ -59,23 +63,33 @@ class battlefield(player,AI):
                self.field.insert(attackFieldPlaceConverter[i],"|*|")
 
 
+#
+# a = battlefield(8)
+# b = [(1,5),(0,0),(0,2)]
+# attackThisCell = [0,0]
+# a.fillField(b)
+#
+# a.drawField()
+#
+# user = player()
+# print(user.canIattack())
+# user.attack(attackThisCell)
+# print(user.canIattack())
+# user.attack(attackThisCell)
+# print(user.canIattack())
+# # a = [(1,0),(3,5),(7,10)]
+# #
+# # print(len(a))
+# #
+# # b = [[1,2,3,11,12],[4,5,6,7,8]]
+# # print(b[1][0])
 
-a = battlefield(8)
-b = [(1,5),(0,0),(0,2)]
-attackThisCell = [0,0]
-a.fillField(b)
-
-a.drawField()
 
 user = player()
-print(user.canIattack())
-user.attack(attackThisCell)
-print(user.canIattack())
-user.attack(attackThisCell)
-print(user.canIattack())
-# a = [(1,0),(3,5),(7,10)]
-#
-# print(len(a))
-#
-# b = [[1,2,3,11,12],[4,5,6,7,8]]
-# print(b[1][0])
+theField = battlefield(6)
+theField.fillField(user.attackArea)
+theField.drawField()
+
+if user.canIattack() == True:
+    theField.fillField(user.attack((0,0)))
+    theField.drawField()
