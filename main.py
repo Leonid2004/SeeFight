@@ -30,8 +30,11 @@ class player:
 class AI(player):
   theTurn = False
   attackArea = []
-
-  
+  FieldSize
+  def __init__(self,FieldSize,theTurn):
+      self.FieldSize = FieldSize
+      self.theTurn = theTurn
+      
       
 
 
