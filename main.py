@@ -4,6 +4,7 @@
 #
 #
 
+import random
 
 class player:
     theTurn = True
@@ -13,9 +14,9 @@ class player:
         return self.theTurn
     
     def attack(self,attackPlace):
-        if self.theTurn == True:
-          self.attackArea.append(attackPlace)
-          self.theTurn = False
+        self.attackArea.append(attackPlace)
+        self.theTurn = False
+
         return self.attackArea
 
 
@@ -23,8 +24,12 @@ class player:
 
              
  
-class AI:
-    pass
+class AI(player):
+  theTurn = False
+  attackArea = []
+
+  
+      
 
 
 class battlefield(player,AI):
@@ -53,7 +58,6 @@ class battlefield(player,AI):
              cntr += strs
             cntr += colmns
             attackFieldPlaceConverter.append(cntr)
-            print(attackFieldPlaceConverter)
 
        for i in range(0,(self.size*self.size)):
                self.field.append("|0|")
@@ -89,7 +93,7 @@ user = player()
 theField = battlefield(6)
 theField.fillField(user.attackArea)
 theField.drawField()
-
+print("")
 if user.canIattack() == True:
-    theField.fillField(user.attack((0,0)))
+    theField.fillField(user.attack((0,1)))
     theField.drawField()
