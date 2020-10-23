@@ -7,9 +7,12 @@
 import random
 
 class player:
-    theTurn = True
+    theTurn = bool()
     attackArea = []
-
+    
+    def __init__(self, _theTurn):
+        self.theTurn = _theTurn
+        
     def canIattack(self):
         return self.theTurn
     
@@ -32,7 +35,7 @@ class AI(player):
       
 
 
-class battlefield(player,AI):
+class battlefield:
     size = int()
     field = []
     def __init__(self, size):
@@ -89,7 +92,7 @@ class battlefield(player,AI):
 # # print(b[1][0])
 
 
-user = player()
+user = player(True)
 theField = battlefield(6)
 theField.fillField(user.attackArea)
 theField.drawField()
