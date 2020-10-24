@@ -20,6 +20,9 @@ class player:
         self.attackArea.append(attackPlace)
         self.theTurn = False
 
+    def putShips(self):
+        pass
+
         return self.attackArea
 
 
@@ -37,6 +40,10 @@ class AI(player):
       place = random.randint(0,FieldSize)
       self.attackArea.append(place)
       self.theTurn = False
+
+  def putShips(self):
+      pass
+  
 
 
 class battlefield:
@@ -96,15 +103,20 @@ class battlefield:
 # # print(b[1][0])
 
 
-user = player(True)
-theField = battlefield(6)
-theField.fillField(user.attackArea)
-theField.drawField()
-print("")
-if user.canIattack() == True:
-    theField.fillField(user.attack((0,1)))
-    theField.drawField()
+# user = player(True)
+# theField = battlefield(6)
+# theField.fillField(user.attackArea)
+# theField.drawField()
+# print("")
+# if user.canIattack() == True:
+#     theField.fillField(user.attack((0,1)))
+#     theField.drawField()
+#
+#
+# machine = AI(True)
+# print(machine.canIattack())
 
-
-machine = AI(True)
-print(machine.canIattack())
+UserTurn = bool(random.randint(0,1))
+BotTurn = bool(not UserTurn)
+print(UserTurn)
+print(BotTurn)
