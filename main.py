@@ -28,14 +28,14 @@ class player:
              
  
 class AI(player):
-  theTurn = False
+  theTurn = bool()
   attackArea = []
-  FieldSize
-  def __init__(self,FieldSize,theTurn):
-      self.FieldSize = FieldSize
-      self.theTurn = theTurn
+  FieldSize = int()
+  def __init__(self,theTurn):
+      super().__init__(theTurn)
       
-      
+  def attack(self,attackPlace):
+      pass
 
 
 class battlefield:
@@ -103,3 +103,7 @@ print("")
 if user.canIattack() == True:
     theField.fillField(user.attack((0,1)))
     theField.drawField()
+
+
+machine = AI(True)
+print(machine.canIattack())
