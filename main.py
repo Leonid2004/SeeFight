@@ -30,12 +30,13 @@ class player:
 class AI(player):
   theTurn = bool()
   attackArea = []
-  FieldSize = int()
   def __init__(self,theTurn):
       super().__init__(theTurn)
       
-  def attack(self,attackPlace):
-      pass
+  def attack(self,FieldSize):
+      place = random.randint(0,FieldSize)
+      self.attackArea.append(place)
+      self.theTurn = False
 
 
 class battlefield:
