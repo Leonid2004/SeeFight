@@ -7,18 +7,10 @@
 import random
 
 class player:
-    theTurn = bool()
     attackArea = []
-    
-    def __init__(self, _theTurn):
-        self.theTurn = _theTurn
-        
-    def canIattack(self):
-        return self.theTurn
-    
+
     def attack(self,attackPlace):
         self.attackArea.append(attackPlace)
-        self.theTurn = False
 
     def putShips(self):
         pass
@@ -31,19 +23,15 @@ class player:
              
  
 class AI(player):
-  theTurn = bool()
   attackArea = []
-  def __init__(self,theTurn):
-      super().__init__(theTurn)
       
   def attack(self,FieldSize):
       place = random.randint(0,FieldSize)
       self.attackArea.append(place)
-      self.theTurn = False
 
   def putShips(self):
       pass
-  
+
 
 
 class battlefield:
@@ -120,3 +108,22 @@ UserTurn = bool(random.randint(0,1))
 BotTurn = bool(not UserTurn)
 print(UserTurn)
 print(BotTurn)
+
+person = player()
+bot = AI()
+theSizeOfField = int(input("Enter the size of battlefield"))
+
+personField = battlefield(theSizeOfField)
+botField = battlefield(theSizeOfField)
+while True:
+    if UserTurn == True:
+        x = int(input("Attacking line"))
+        y = int(input("Attacking column"))
+        person.attack((x,y))
+        UserTurn = False
+
+    elif BotTurn == True:
+        pass
+
+
+#После атаки надо менять не только свой turn но и turn противника на противоположный
