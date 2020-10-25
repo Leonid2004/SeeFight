@@ -1,5 +1,5 @@
 #Возможно я немного отошел от задания но я решил немного сделать по другому с
-#точки зрения ООП. Решил описать через 3 класса,было так немного удобнее(Главное же что бы игра работала)
+#точки зрения ООП. Решил описать через 3 класса,было так немного удобнее(Главное же что бы игра работала)  ;)
 #вот как тут:
 #
 #
@@ -8,15 +8,61 @@ import random
 
 class player:
     attackArea = []
+    Ships = [[],[],[],[],[],[],[]] #0 - Big, 1,2 - Medium, 3,4,5,6 - Small;
 
     def attack(self,attackPlace):
         self.attackArea.append(attackPlace)
-
-    def putShips(self):
-        pass
-
         return self.attackArea
 
+    def putShips(self,fieldSize):
+         FirstCellCol = int()
+         FirstCellStr = int()
+         Dir = str()
+         Direction = [] #up down right left
+
+         for i in range(0,7):
+
+              FirstCellStr = int(input("Line of starting point for the Ship:"))
+              FirstCellCol = int(input("Column of starting point for the ship:"))
+              Dir = str(input("Direction (u - up d - down r - right l - left):"))
+              Direction.append(Dir)
+              strs = FirstCellStr
+              colmns = FirstCellCol
+              cntr = 0
+              for j in range(0, fieldSize):
+                  cntr += strs
+              cntr += colmns
+              self.Ships[i].append(cntr)
+
+         for i in range (0,3):
+             if i == 0:#big ship
+                if Direction[i] == "l":
+                    self.Ships[i].append(self.Ships[i][0]-1)
+                    self.Ships[i].append(self.Ships[i][0]-2)
+                if Direction[i] == "r":
+                    self.Ships[i].append(self.Ships[i][0]+1)
+                    self.Ships[i].append(self.Ships[i][0]+2)
+                if Direction[i] == "u":
+                    self.Ships[i].append(self.Ships[i][0] - fieldSize)
+                    self.Ships[i].append(self.Ships[i][0] - (2*fieldSize))
+                if Direction[i] == "d":
+                    self.Ships[i].append(self.Ships[i][0] + fieldSize)
+                    self.Ships[i].append(self.Ships[i][0] + (2*fieldSize))
+
+             if i > 0 and i < 3:
+                if Direction[i] == "l":
+                    self.Ships[i].append(self.Ships[i][0]-1)
+                if Direction[i] == "r":
+                    self.Ships[i].append(self.Ships[i][0]+1)
+                if Direction[i] == "u":
+                    self.Ships[i].append(self.Ships[i][0] - fieldSize)
+                if Direction[i] == "d":
+                    self.Ships[i].append(self.Ships[i][0] + fieldSize)
+
+         return self.Ships
+
+    def printShips(self,ships):
+        print(ships)
 
 
 
@@ -26,11 +72,14 @@ class AI(player):
   attackArea = []
       
   def attack(self,FieldSize):
-      place = random.randint(0,FieldSize)
-      self.attackArea.append(place)
+      place1 = random.randint(0,FieldSize)
+      place2 = random.randint(0,FieldSize)
+      self.attackArea.append((place1,place2))
+      return self.attackArea
 
   def putShips(self):
       pass
+
 
 
 
@@ -104,26 +153,37 @@ class battlefield:
 # machine = AI(True)
 # print(machine.canIattack())
 
-UserTurn = bool(random.randint(0,1))
-BotTurn = bool(not UserTurn)
-print(UserTurn)
-print(BotTurn)
 
-person = player()
-bot = AI()
-theSizeOfField = int(input("Enter the size of battlefield"))
-
-personField = battlefield(theSizeOfField)
-botField = battlefield(theSizeOfField)
-while True:
-    if UserTurn == True:
-        x = int(input("Attacking line"))
-        y = int(input("Attacking column"))
-        person.attack((x,y))
-        UserTurn = False
-
-    elif BotTurn == True:
-        pass
+####################################################################################################################################
+# UserTurn = bool(random.randint(0,1))
+# BotTurn = bool(not UserTurn)
+# print(UserTurn)
+# print(BotTurn)
+#
+# person = player()
+# bot = AI()
+# theSizeOfField = int(input("\nEnter the size of battlefield = "))
+#
+# personField = battlefield(theSizeOfField)
+# botField = battlefield(theSizeOfField)
+# while True:
+#     if UserTurn == True:
+#         personField.fillField(bot.attackArea)
+#         personField.drawField()
+#         x = int(input("\nAttacking line = "))
+#         y = int(input("\nAttacking column = "))
+#         person.attack((x,y))
+#         UserTurn = False
+#         BotTurn = True
+#
+#     elif BotTurn == True:
+#         bot.attack(theSizeOfField)
+#         BotTurn = False
+#         UserTurn = True
 
 
 #После атаки надо менять не только свой turn но и turn противника на противоположный
+
+a = player()
+a.putShips(5)
+print(a.Ships)
