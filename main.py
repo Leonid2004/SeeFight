@@ -105,13 +105,13 @@ class battlefield:
             print("\n")
         print(self.field[i],end="")
 
-    def fillField (self,destroyed):
+    def fillField (self,attacked,ships):
        attackFieldPlaceConverter = []
 
-       for i in range(0,len(destroyed)):
+       for i in range(0,len(attacked)):
          #  for j in range(0,self.size):
-            strs = destroyed[i][0]
-            colmns = destroyed[i][1]
+            strs = attacked[i][0]
+            colmns = attacked[i][1]
             cntr = 0
             for j in range(0,self.size):
              cntr += strs
@@ -121,10 +121,23 @@ class battlefield:
        for i in range(0,(self.size*self.size)):
                self.field.append("|0|")
 
-       for i in range(0,len(attackFieldPlaceConverter)):
-               self.field.pop(attackFieldPlaceConverter[i])
-               self.field.insert(attackFieldPlaceConverter[i],"|*|")
+       for i in range(0,7):
+           for j in range(0,len(ships[i])):
+            self.field.pop(ships[i][j])
+            self.field.insert(ships[i][j],"|1|")
 
+       for i in range(0,len(attackFieldPlaceConverter)):
+               hitTheShip = False
+               self.field.pop(attackFieldPlaceConverter[i])
+               for k in range(0,7):
+                   for j in range(0,len(ships[k])):
+                       if attackFieldPlaceConverter[i] == ships[k][j]:
+                           hitTheShip = True
+
+               if hitTheShip == True:
+                    self.field.insert(attackFieldPlaceConverter[i],"|X|")
+               else:
+                   self.field.insert(attackFieldPlaceConverter[i], "|T|")
 
 #
 # a = battlefield(8)
@@ -190,7 +203,15 @@ class battlefield:
 #         UserTurn = True
 
 
-
+b = battlefield(8)
 a = player()
-a.putShips(5)
-print(a.Ships)
+a.putShips(8)
+x = int(input("attack Line"))
+y = int(input("attack Column"))
+a.attack((x,y))
+
+machine = AI()
+
+AIBattleField = battlefield(8)
+AIBattleField.fillField(a.attackArea,a.Ships)
+AIBattleField.drawField()
