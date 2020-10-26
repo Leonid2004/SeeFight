@@ -203,8 +203,7 @@ class battlefield:
 #         personField.fillField(bot.attackArea)
 #         personField.drawField()
 #         x = int(input("\nAttacking line = "))
-#         y = int(input("\nAttacking column
-#= "))
+#         y = int(input("\nAttacking column= "))
 #         person.attack((x,y))
 #         UserTurn = False
 #         BotTurn = True
