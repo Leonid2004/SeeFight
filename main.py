@@ -148,7 +148,7 @@ class AI(player):
         self.Ships[i].append(cntr)
       print(self.Ships)
       print(self.Direction)
-      for i in range(0, 3):#############problem
+      for i in range(0, 3):#############problem I guess it it because we shoud substract 1 form the size idk
             if i == 0:  # big ship
                 if self.Direction[i] == 'l':
                     self.Ships[i].append(self.Ships[i][0] - 1)
