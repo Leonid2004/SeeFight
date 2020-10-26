@@ -79,12 +79,15 @@ class player:
                 if Direction[i] == "d":
                     self.Ships[i].append(self.Ships[i][0] + fieldSize)
                    ### ##
+         flag = False
          for i in range(0,len(self.Ships)):
              for j in range(0,len(self.Ships[i])):
-                 for k in range(0,len(self.Ships)):
-                   for l in range(0,len(self.Ships[k])):
+                 for k in range(i,len(self.Ships)):
+                   for l in range(j,len(self.Ships[k])):
                       if self.Ships[i][j] == self.Ships[k][l]:
-                          print("Too near!")
+                          print("Too near!",k,l)
+                          flag = True
+                          continue
                           ###
          return self.Ships
 
