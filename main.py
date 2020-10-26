@@ -29,10 +29,21 @@ class player:
          Direction = [] #up down right left
 
          for i in range(0,7):
+              if i == 0:
+                FirstCellStr = int(input("Line of starting point for the big ship:"))
+                FirstCellCol = int(input("Column of starting point for the big ship:"))
+                Dir = str(input("Direction for the ship (u - up d - down r - right l - left):"))
+              elif i > 0 and i < 3:
+                FirstCellStr = int(input("Line of starting point for the medium ship:"))
+                FirstCellCol = int(input("Column of starting point for the medium ship:"))
+                Dir = str(input("Direction for the ship (u - up d - down r - right l - left):"))
+              elif i >=3:
+                FirstCellStr = int(input("Line of starting point for the small ship:"))
+                FirstCellCol = int(input("Column of starting point for the small ship:"))
+            
 
-              FirstCellStr = int(input("Line of starting point for the Ship:"))
-              FirstCellCol = int(input("Column of starting point for the ship:"))
-              Dir = str(input("Direction (u - up d - down r - right l - left):"))
+
+                  
               Direction.append(Dir)
               strs = FirstCellStr
               colmns = FirstCellCol
@@ -192,7 +203,8 @@ class battlefield:
 #         personField.fillField(bot.attackArea)
 #         personField.drawField()
 #         x = int(input("\nAttacking line = "))
-#         y = int(input("\nAttacking column = "))
+#         y = int(input("\nAttacking column
+#= "))
 #         person.attack((x,y))
 #         UserTurn = False
 #         BotTurn = True
@@ -213,5 +225,7 @@ a.attack((x,y))
 machine = AI()
 
 AIBattleField = battlefield(8)
+AIBattleField.fillField((),a.Ships)
+AIBattleField.drawField()
 AIBattleField.fillField(a.attackArea,a.Ships)
 AIBattleField.drawField()
