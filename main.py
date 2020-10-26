@@ -40,7 +40,8 @@ class player:
               elif i >=3:
                 FirstCellStr = int(input("Line of starting point for the small ship:"))
                 FirstCellCol = int(input("Column of starting point for the small ship:"))
-            
+
+                
 
 
                   
@@ -77,7 +78,14 @@ class player:
                     self.Ships[i].append(self.Ships[i][0] - fieldSize)
                 if Direction[i] == "d":
                     self.Ships[i].append(self.Ships[i][0] + fieldSize)
-
+                   ### ##
+         for i in range(0,len(self.Ships)):
+             for j in range(0,len(self.Ships[i])):
+                 for k in range(0,len(self.Ships)):
+                   for l in range(0,len(self.Ships[k])):
+                      if self.Ships[i][j] == self.Ships[k][l]:
+                          print("Too near!")
+                          ###
          return self.Ships
 
     def printShips(self,ships):
