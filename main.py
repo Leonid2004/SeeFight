@@ -53,7 +53,6 @@ class player:
               for j in range(0, fieldSize):
                   cntr += strs
               cntr += colmns
-              PP = True
               flag = False
               self.Ships[counter].append(cntr)
               errorPlace.clear()
@@ -68,10 +67,9 @@ class player:
                                  break
                              for l in range(0, len(self.Ships[k])):
                                  if self.Ships[o][j] == self.Ships[k][l]:
-                                     print("Same spot!!!", k, l, o, j)
+                                     print("You already shot in this place, enter another one", k, l, o, j)
                                      counter -= 1
                                      flag = True
-                                     PP = False
                                      self.Ships[k].pop(l)
                                      break
 
@@ -125,15 +123,56 @@ class player:
  
 class AI(player):
   attackArea = []
-      
+  Ships = [[], [], [], [], [], [], []]
+  dirr = "ldru"
+  Direction = []
   def attack(self,FieldSize):
       place1 = random.randint(0,FieldSize)
       place2 = random.randint(0,FieldSize)
       self.attackArea.append((place1,place2))
       return self.attackArea
 
-  def putShips(self):
-      pass
+  def putShips(self,FieldSize):
+      for i in range(0, 3):
+          self.Direction.append(random.choice(self.dirr))
+      for i in range(0,7):
+        placeStr = random.randint(0, FieldSize-1)
+        placeCol = random.randint(0, FieldSize-1)
+        cntr = 0
+        for j in range(0, FieldSize):
+            cntr += placeStr
+            print(cntr)
+            print("")
+        cntr += placeCol
+        print(cntr)
+        self.Ships[i].append(cntr)
+      print(self.Ships)
+      print(self.Direction)
+      for i in range(0, 3):#############problem
+            if i == 0:  # big ship
+                if self.Direction[i] == 'l':
+                    self.Ships[i].append(self.Ships[i][0] - 1)
+                    self.Ships[i].append(self.Ships[i][0] - 2)
+                if self.Direction[i] == 'r':
+                    self.Ships[i].append(self.Ships[i][0] + 1)
+                    self.Ships[i].append(self.Ships[i][0] + 2)
+                if self.Direction[i] == 'u':
+                    self.Ships[i].append(self.Ships[i][0] - FieldSize)
+                    self.Ships[i].append(self.Ships[i][0] - (2 * FieldSize))
+                if self.Direction[i] == 'd':
+                    self.Ships[i].append(self.Ships[i][0] + FieldSize)
+                    self.Ships[i].append(self.Ships[i][0] + (2 * FieldSize))
+
+            if i > 0 and i < 3:
+                if self.Direction[i] == 'l':
+                    self.Ships[i].append(self.Ships[i][0] - 1)
+                if self.Direction[i] == 'r':
+                    self.Ships[i].append(self.Ships[i][0] + 1)
+                if self.Direction[i] == 'u':
+                    self.Ships[i].append(self.Ships[i][0] - FieldSize)
+                if self.Direction[i] == 'd':
+                    self.Ships[i].append(self.Ships[i][0] + FieldSize)
+      return self.Ships
 
 
 
@@ -250,18 +289,22 @@ class battlefield:
 #         BotTurn = False
 #         UserTurn = True
 
-
-b = battlefield(8)
-a = player()
-a.putShips(8)
-x = int(input("attack Line"))
-y = int(input("attack Column"))
-a.attack((x,y))
-
+########################################
+# b = battlefield(8)
+# a = player()
+# a.putShips(8)
+# x = int(input("attack Line"))
+# y = int(input("attack Column"))
+# a.attack((x,y))
+#
+# machine = AI()
+#
+# AIBattleField = battlefield(8)
+# AIBattleField.fillField((),a.Ships)
+# AIBattleField.drawField()
+# AIBattleField.fillField(a.attackArea,a.Ships)
+# AIBattleField.drawField()
 machine = AI()
-
-AIBattleField = battlefield(8)
-AIBattleField.fillField((),a.Ships)
-AIBattleField.drawField()
-AIBattleField.fillField(a.attackArea,a.Ships)
-AIBattleField.drawField()
+machine1 = battlefield(8)
+machine1.fillField(machine.attackArea,machine.putShips(8))
+machine1.drawField()
