@@ -27,24 +27,25 @@ class player:
          FirstCellStr = int()
          Dir = str()
          Direction = [] #up down right left
-
-         for i in range(0,7):
-              if i == 0:
+         counter = 0
+         while counter < 7:
+              print(counter)
+              if counter == 0:
                 FirstCellStr = int(input("Line of starting point for the big ship:"))
                 FirstCellCol = int(input("Column of starting point for the big ship:"))
                 Dir = str(input("Direction for the ship (u - up d - down r - right l - left):"))
-              elif i > 0 and i < 3:
+              elif counter > 0 and counter < 3:
                 FirstCellStr = int(input("Line of starting point for the medium ship:"))
                 FirstCellCol = int(input("Column of starting point for the medium ship:"))
                 Dir = str(input("Direction for the ship (u - up d - down r - right l - left):"))
-              elif i >=3:
+              elif counter >=3:
                 FirstCellStr = int(input("Line of starting point for the small ship:"))
                 FirstCellCol = int(input("Column of starting point for the small ship:"))
 
                 
 
 
-                  
+              errorPlace = []
               Direction.append(Dir)
               strs = FirstCellStr
               colmns = FirstCellCol
@@ -52,8 +53,30 @@ class player:
               for j in range(0, fieldSize):
                   cntr += strs
               cntr += colmns
-              self.Ships[i].append(cntr)
+              PP = True
+              flag = False
+              self.Ships[counter].append(cntr)
+              errorPlace.clear()
+              for o in range(0, len(self.Ships)):
+                     if flag == True:
+                        break
+                     for j in range(0, len(self.Ships[o])):
+                         if  flag == True:
+                             break
+                         for k in range(o + 1, len(self.Ships)):
+                             if flag == True:
+                                 break
+                             for l in range(0, len(self.Ships[k])):
+                                 if self.Ships[o][j] == self.Ships[k][l]:
+                                     print("Same spot!!!", k, l, o, j)
+                                     counter -= 1
+                                     flag = True
+                                     PP = False
+                                     self.Ships[k].pop(l)
+                                     break
 
+
+              counter += 1
          for i in range (0,3):
              if i == 0:#big ship
                 if Direction[i] == "l":
@@ -79,16 +102,18 @@ class player:
                 if Direction[i] == "d":
                     self.Ships[i].append(self.Ships[i][0] + fieldSize)
                    ### ##
-         flag = False
-         for i in range(0,len(self.Ships)):
-             for j in range(0,len(self.Ships[i])):
-                 for k in range(i,len(self.Ships)):
-                   for l in range(j,len(self.Ships[k])):
-                      if self.Ships[i][j] == self.Ships[k][l]:
-                          print("Too near!",k,l)
-                          flag = True
-                          continue
-                          ###
+
+         # WrongAnswers = []
+         # for i in range(0,len(self.Ships)):
+         #     for j in range(0,len(self.Ships[i])):
+         #         for k in range(i+1,len(self.Ships)):
+         #           for l in range(0,len(self.Ships[k])):
+         #              if self.Ships[i][j] == self.Ships[k][l]:
+         #                  print("Too near!",k,l,i,j)
+         #                  WrongAnswers.append((i,j,k,l))
+
+
+
          return self.Ships
 
     def printShips(self,ships):
@@ -126,6 +151,7 @@ class battlefield:
         if i % self.size == 0:
             print("\n")
         print(self.field[i],end="")
+     print(" ");
 
     def fillField (self,attacked,ships):
        attackFieldPlaceConverter = []
