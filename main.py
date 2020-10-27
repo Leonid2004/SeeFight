@@ -134,22 +134,30 @@ class AI(player):
       for i in range(0, 3):
           self.Direction.append(random.choice(self.dirr))
       counter = 0
-      for i in range(0,7): 
-        placeStr = random.randint(0, FieldSize-1)
-        placeCol = random.randint(0, FieldSize-1)
-        cntr = 0
-        for j in range(0, FieldSize):
+      for i in range(0,7):
+          if i == 0:
+            placeStr = random.randint(3, FieldSize-4)
+            placeCol = random.randint(3, FieldSize-4)
+          if i > 0 and i < 3:
+             placeStr = random.randint(2, FieldSize-3)
+             placeCol = random.randint(2, FieldSize-3)
+          else:
+             placeStr = random.randint(0, FieldSize-1)
+             placeCol = random.randint(0, FieldSize-1)
+                      
+          cntr = 0
+          for j in range(0, FieldSize):
             cntr += placeStr
             print(cntr)
             print("")
-        cntr += placeCol
-        print(cntr)
-        self.Ships[i].append(cntr)
+          cntr += placeCol
+          print(cntr)
+          self.Ships[i].append(cntr)
       print(self.Ships)
       print(self.Direction)
       for i in range(0, 3):#############problem I guess it it because we shoud substract 1 form the size idk
             if i == 0:  # big ship
-                if self.Direction[i] == 'l':
+                if self.Direction[i] == 'l':#error is here if the big ship or medium can go out of boundaries
                     self.Ships[i].append(self.Ships[i][0] - 1)
                     self.Ships[i].append(self.Ships[i][0] - 2)
                 if self.Direction[i] == 'r':
