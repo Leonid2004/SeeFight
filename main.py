@@ -154,6 +154,25 @@ class AI(player):
           print(cntr)
           self.Ships[cn].append(cntr)
           cn += 1
+          flag = False
+          self.Ships[cn].append(cntr)
+          for o in range(0, len(self.Ships)):
+                     if flag == True:
+                        break
+                     for j in range(0, len(self.Ships[o])):
+                         if  flag == True:
+                             break
+                         for k in range(o + 1, len(self.Ships)):
+                             if flag == True:
+                                 break
+                             for l in range(0, len(self.Ships[k])):
+                                 if self.Ships[o][j] == self.Ships[k][l]:
+                                     print("You already shot in this place, enter another one", k, l, o, j)
+                                     print("wtf",cn)
+                                     cn -= 1
+                                     flag = True
+                                     self.Ships[k].pop(l)
+                                     break
       print(self.Ships)
       print(self.Direction)
       for i in range(0, 3):#############problem I guess it it because we shoud substract 1 form the size idk
