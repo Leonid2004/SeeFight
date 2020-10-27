@@ -133,12 +133,12 @@ class AI(player):
   def putShips(self,FieldSize):
       for i in range(0, 3):
           self.Direction.append(random.choice(self.dirr))
-      counter = 0
-      for i in range(0,7):
-          if i == 0:
+      cn = 0
+      while cn < 7:
+          if cn == 0:
             placeStr = random.randint(3, FieldSize-4)
             placeCol = random.randint(3, FieldSize-4)
-          if i > 0 and i < 3:
+          if cn > 0 and cn < 3:
              placeStr = random.randint(2, FieldSize-3)
              placeCol = random.randint(2, FieldSize-3)
           else:
@@ -152,7 +152,8 @@ class AI(player):
             print("")
           cntr += placeCol
           print(cntr)
-          self.Ships[i].append(cntr)
+          self.Ships[cn].append(cntr)
+          cn += 1
       print(self.Ships)
       print(self.Direction)
       for i in range(0, 3):#############problem I guess it it because we shoud substract 1 form the size idk
