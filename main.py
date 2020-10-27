@@ -45,7 +45,6 @@ class player:
                 
 
 
-              errorPlace = []
               Direction.append(Dir)
               strs = FirstCellStr
               colmns = FirstCellCol
@@ -55,7 +54,6 @@ class player:
               cntr += colmns
               flag = False
               self.Ships[counter].append(cntr)
-              errorPlace.clear()
               for o in range(0, len(self.Ships)):
                      if flag == True:
                         break
@@ -135,7 +133,8 @@ class AI(player):
   def putShips(self,FieldSize):
       for i in range(0, 3):
           self.Direction.append(random.choice(self.dirr))
-      for i in range(0,7):
+      counter = 0
+      for i in range(0,7): 
         placeStr = random.randint(0, FieldSize-1)
         placeCol = random.randint(0, FieldSize-1)
         cntr = 0
