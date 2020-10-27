@@ -153,7 +153,6 @@ class AI(player):
           cntr += placeCol
           print(cntr)
           self.Ships[cn].append(cntr)
-          cn += 1
           flag = False
           self.Ships[cn].append(cntr)
           for o in range(0, len(self.Ships)):
@@ -173,6 +172,7 @@ class AI(player):
                                      flag = True
                                      self.Ships[k].pop(l)
                                      break
+          cn += 1
       print(self.Ships)
       print(self.Direction)
       for i in range(0, 3):#############problem I guess it it because we shoud substract 1 form the size idk
