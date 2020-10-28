@@ -350,6 +350,9 @@ ComputerField = battlefield(FieldSize)
 UserTurn = bool(random.randint(0,1))
 ComputerTurn = bool(not UserTurn)
 
-print(UserTurn)
-print(ComputerTurn)
+while True:
+    if UserTurn == True:
+        pass
 
+    elif ComputerTurn == True:
+        pass
