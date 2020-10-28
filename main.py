@@ -64,7 +64,7 @@ class player:
                              if flag == True:
                                  break
                              for l in range(0, len(self.Ships[k])):
-                                 if self.Ships[o][j] == self.Ships[k][l]:
+                                 if self.Ships[o][j] == self.Ships[k][l] or abs((self.Ships[o][j] - self.Ships[k][l])) == 1:
                                      print("You already shot in this place, enter another one", k, l, o, j)
                                      counter -= 1
                                      flag = True
@@ -331,7 +331,25 @@ class battlefield:
 # AIBattleField.drawField()
 # AIBattleField.fillField(a.attackArea,a.Ships)
 # AIBattleField.drawField()
-machine = AI()
-machine1 = battlefield(8)
-machine1.fillField(machine.attackArea,machine.putShips(8))
-machine1.drawField()
+#machine = AI()
+#machine1 = battlefield(8)
+#machine1.fillField(machine.attackArea,machine.putShips(8))
+#machine1.drawField()
+
+
+############################## G A M E #############################
+
+User = player()
+Computer = AI()
+
+FieldSize = int(input("Please enter the size of playing field"))
+
+UserField = battlefield(FieldSize)
+ComputerField = battlefield(FieldSize)
+
+UserTurn = bool(random.randint(0,1))
+ComputerTurn = bool(not UserTurn)
+
+print(UserTurn)
+print(ComputerTurn)
+
