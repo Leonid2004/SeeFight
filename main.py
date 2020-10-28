@@ -349,10 +349,26 @@ ComputerField = battlefield(FieldSize)
 
 UserTurn = bool(random.randint(0,1))
 ComputerTurn = bool(not UserTurn)
+User.putShips(FieldSize)
+Computer.putShips(FieldSize)
 
+FirstTimeLoop = True
 while True:
-    if UserTurn == True:
-        pass
+    if FirstTimeLoop == False:
+      UserField.drawField()
 
-    elif ComputerTurn == True:
-        pass
+    if UserTurn == True:
+        x = int(input("Which line do you want to attack?"))
+        y = int(input("Which column do you want to attack?"))
+        User.attack((x,y))
+        ComputerField.fillField(User.attackArea,Computer.Ships)
+        UserTurn = False
+        ComputerTurn = True
+
+    if ComputerTurn == True:
+         Computer.attack(FieldSize)
+         UserField.fillField(Computer.attackArea,User.Ships)
+         ComputerTurn = False
+         UserTurn = True
+
+    FirstTimeLoop = False
