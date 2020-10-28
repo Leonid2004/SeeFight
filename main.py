@@ -13,7 +13,7 @@
 #
 
 import random
-
+import math
 class player:
     attackArea = []
     Ships = [[],[],[],[],[],[],[]] #0 - Big, 1,2 - Medium, 3,4,5,6 - Small;
@@ -142,8 +142,8 @@ class AI(player):
              placeStr = random.randint(2, FieldSize-3)
              placeCol = random.randint(2, FieldSize-3)
           else:
-             placeStr = random.randint(0, FieldSize-1)
-             placeCol = random.randint(0, FieldSize-1)
+             placeStr = random.randint(0, FieldSize-2)
+             placeCol = random.randint(0, FieldSize-2)
                       
           cntr = 0
           for j in range(0, FieldSize):
@@ -154,7 +154,6 @@ class AI(player):
           print(cntr)
           self.Ships[cn].append(cntr)
           flag = False
-          self.Ships[cn].append(cntr)
           for o in range(0, len(self.Ships)):
                      if flag == True:
                         break
@@ -165,13 +164,14 @@ class AI(player):
                              if flag == True:
                                  break
                              for l in range(0, len(self.Ships[k])):
-                                 if self.Ships[o][j] == self.Ships[k][l]:
-                                     print("You already shot in this place, enter another one", k, l, o, j)
+                                 if (self.Ships[o][j] == self.Ships[k][l]) or abs((self.Ships[o][j] - self.Ships[k][l])) == 1:
+                                     print("You already shot in this place or very near, enter another one", k, l, o, j)
                                      print("wtf",cn)
                                      cn -= 1
                                      flag = True
                                      self.Ships[k].pop(l)
                                      break
+        
           cn += 1
       print(self.Ships)
       print(self.Direction)
